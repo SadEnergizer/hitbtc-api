@@ -158,6 +158,18 @@ class HitBtcAPITrading {
     public function cancelAllOrders() {
          return $this->request('order', null, [], 'DELETE');
     }
+
+    /**
+     * Closes order by ID.
+     *
+     * @param string $clientOrderId Unique order ID.
+     *
+     * @return array JSON data.
+     */
+    public function cancelOrder($clientOrderId) {
+        return $this->request('order', "order/{$clientOrderId}", [], 'DELETE');
+    }
+
     /**
      * JSON request functionality wrapper.
      *
@@ -179,6 +191,22 @@ class HitBtcAPITrading {
         }
 
         return $response;
+    }
+
+    /**
+     * Returns all orders.
+     *
+     * @param string $clientOrderId Unique order ID.
+     *
+     * @return array JSON data.
+     */
+    public function getHistoryOrders($clientOrderId = null) {
+        $params = [];
+        if (!is_null($clientOrderId)) {
+            $params['clientOrderId'] = $clientOrderId;
+        }
+
+        return $this->request('history', 'history/order', $params);
     }
 
 }
