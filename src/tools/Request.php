@@ -89,13 +89,13 @@ class Request {
         // generate the POST data string
         $params = http_build_query($params);
         if (strlen($params) && $method === 'GET') {
-            $requestUri .= '&' . $params;
+            $requestUri .= ($this->apiVersion == 2 ? '?' : '&') . $params;
         }
 
         // curl handle (initialize if required)
-        if (is_null(self::$ch)) {
+        //if (is_null(self::$ch)) {
             self::$ch = curl_init();
-        }
+        //}
 
         if ($this->apiVersion == 2) {
             curl_setopt(self::$ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
