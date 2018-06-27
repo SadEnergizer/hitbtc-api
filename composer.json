@@ -1,5 +1,5 @@
 {
-    "name": "dzarezenko/hitbtc-api",
+    "name": "sadenergizer/hitbtc-api",
     "description": "PHP wrapper for the HitBTC API.",
     "type": "library",
     "keywords": ["hitbtc", "api"],
